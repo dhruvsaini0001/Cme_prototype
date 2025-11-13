@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CME Detection Visualization</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌞 Coronal Mass Ejection Detection System</h1>
+        <p class="subtitle">Powered by Aditya-L1 SWIS Payload & AI Analysis</p>
+        
+        <div class="viz-grid">
+            <div class="viz-card">
+                <h2 class="card-title">☀️ Real-Time Solar Monitoring</h2>
+                <div class="solar-system" id="solarSystem">
+                    <div class="plasma-cloud"></div>
+                    <div class="plasma-cloud" style="animation-delay: 2s;"></div>
+                    <div class="sun"></div>
+                    <div class="aditya-l1"></div>
+                    <div class="earth"></div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ffd700; box-shadow: 0 0 10px #ff6b35;"></div>
+                        <span>Sun</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #00ffff; box-shadow: 0 0 10px #00ffff;"></div>
+                        <span>Aditya-L1</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #4da6ff;"></div>
+                        <span>Earth</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ff6b35; box-shadow: 0 0 5px #ff6b35;"></div>
+                        <span>Plasma Cloud (CME)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="viz-card">
+                <h2 class="card-title">📊 Solar Wind Parameters (SWIS Data)</h2>
+                <div class="chart-container">
+                    <canvas id="dataChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="viz-card">
+            <h2 class="card-title">🔄 Data Processing Pipeline</h2>
+            <div class="data-flow">
+                <div class="flow-item">
+                    <div class="flow-icon">🛰️</div>
+                    <h3>Aditya-L1</h3>
+                    <p>SWIS Payload</p>
+                    <div class="flow-arrow">→</div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-icon">📡</div>
+                    <h3>Data Stream</h3>
+                    <p>Real-time Telemetry</p>
+                    <div class="flow-arrow">→</div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-icon">🧠</div>
+                    <h3>AI Analysis</h3>
+                    <p>ML Detection</p>
+                    <div class="flow-arrow">→</div>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-icon">⚠️</div>
+                    <h3>Alert System</h3>
+                    <p>CME Warning</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="viz-card">
+            <h2 class="card-title">⚛️ Inside the Plasma: CME Composition</h2>
+            <div class="plasma-breakdown">
+                <p style="margin-bottom: 20px; color: #a0a0a0; line-height: 1.6;">
+                    A CME is a massive cloud of <strong style="color: #ff6b35;">magnetized plasma</strong> — the fourth state of matter. 
+                    It consists of billions of tons of charged particles ripped from the Sun's corona.
+                </p>
+                
+                <div class="composition-grid">
+                    <div class="particle-card">
+                        <div class="particle-icon" style="background: linear-gradient(135deg, #ff4444, #cc0000);">
+                            <span style="font-size: 2em;">⊕</span>
+                        </div>
+                        <h3>Protons (H⁺)</h3>
+                        <div class="particle-stat">~95%</div>
+                        <p>Positively charged hydrogen nuclei - the most abundant particle in solar plasma</p>
+                    </div>
+                    
+                    <div class="particle-card">
+                        <div class="particle-icon" style="background: linear-gradient(135deg, #4444ff, #0000cc);">
+                            <span style="font-size: 2em;">⊖</span>
+                        </div>
+                        <h3>Electrons (e⁻)</h3>
+                        <div class="particle-stat">~95%</div>
+                        <p>Negatively charged particles that balance the plasma's charge</p>
+                    </div>
+                    
+                    <div class="particle-card">
+                        <div class="particle-icon" style="background: linear-gradient(135deg, #ff8844, #ff5500);">
+                            <span style="font-size: 2em;">He</span>
+                        </div>
+                        <h3>Alpha Particles (He²⁺)</h3>
+                        <div class="particle-stat">~4%</div>
+                        <p>Helium nuclei - doubly ionized helium atoms</p>
+                    </div>
+                    
+                    <div class="particle-card">
+                        <div class="particle-icon" style="background: linear-gradient(135deg, #44ff88, #00cc44);">
+                            <span style="font-size: 2em;">⚛</span>
+                        </div>
+                        <h3>Heavy Ions</h3>
+                        <div class="particle-stat">&lt;1%</div>
+                        <p>Ionized atoms of carbon, oxygen, nitrogen, iron, and other elements</p>
+                    </div>
+                </div>
+                
+                <div class="plasma-properties">
+                    <h3 style="color: #ff6b35; margin: 30px 0 20px 0;">🌡️ Plasma Properties During CME</h3>
+                    <div class="properties-grid">
+                        <div class="property-item">
+                            <span class="property-label">Temperature:</span>
+                            <span class="property-value">1-10 million K</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Mass:</span>
+                            <span class="property-value">1-100 billion kg</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Velocity:</span>
+                            <span class="property-value">250-3000 km/s</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Magnetic Field:</span>
+                            <span class="property-value">Embedded & twisted</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Particle Count:</span>
+                            <span class="property-value">10²⁴ - 10²⁶ particles</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Energy:</span>
+                            <span class="property-value">10²⁴ - 10²⁵ Joules</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detection-note">
+                    <strong>🔬 What SWIS Detects:</strong> The Solar Wind Ion Spectrometer measures the velocity distribution, 
+                    density, and composition of these charged particles as they stream past Aditya-L1. During a CME, 
+                    sudden spikes in particle density, velocity, and temperature reveal the plasma cloud's passage.
+                </div>
+            </div>
+        </div>
+        
+        <div class="viz-card">
+            <h2 class="card-title">🌍 What Happens When CME Reaches Earth?</h2>
+            <div class="impact-section">
+                <p style="margin-bottom: 25px; color: #a0a0a0; line-height: 1.6;">
+                    When a CME's magnetized plasma cloud collides with Earth's magnetosphere, it triggers a 
+                    <strong style="color: #ff6b35;">geomagnetic storm</strong> that can have cascading effects on 
+                    our technology-dependent civilization.
+                </p>
+                
+                <div class="earth-impact-visualization">
+                    <h3 style="color: #ff6b35; margin-bottom: 20px; text-align: center;">CME Impact Visualization</h3>
+                    <div class="impact-scene">
+                        <div class="earth-large">
+                            <div class="earth-glow"></div>
+                            <div class="magnetosphere"></div>
+                            <div class="aurora-north"></div>
+                            <div class="aurora-south"></div>
+                        </div>
+                        <div class="cme-incoming"></div>
+                        <div class="cme-incoming" style="animation-delay: 0.5s;"></div>
+                        <div class="cme-incoming" style="animation-delay: 1s;"></div>
+                        <div class="magnetic-field-line" style="top: 30%; animation-delay: 0s;"></div>
+                        <div class="magnetic-field-line" style="top: 40%; animation-delay: 0.3s;"></div>
+                        <div class="magnetic-field-line" style="top: 50%; animation-delay: 0.6s;"></div>
+                        <div class="magnetic-field-line" style="top: 60%; animation-delay: 0.9s;"></div>
+                        <div class="magnetic-field-line" style="top: 70%; animation-delay: 1.2s;"></div>
+                    </div>
+                    <div class="impact-legend">
+                        <div class="legend-item-inline">
+                            <div class="legend-dot" style="background: #4da6ff;"></div>
+                            <span>Earth</span>
+                        </div>
+                        <div class="legend-item-inline">
+                            <div class="legend-dot" style="background: rgba(0, 200, 255, 0.3); border: 2px solid #00c8ff;"></div>
+                            <span>Magnetosphere</span>
+                        </div>
+                        <div class="legend-item-inline">
+                            <div class="legend-dot" style="background: #ff6b35;"></div>
+                            <span>CME Plasma</span>
+                        </div>
+                        <div class="legend-item-inline">
+                            <div class="legend-dot" style="background: #00ff88;"></div>
+                            <span>Auroras</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-scenarios">
+                    <h3 style="color: #ff6b35; margin: 40px 0 20px 0; text-align: center;">🌐 Earth Under CME Impact - Visual Scenarios</h3>
+                    
+                    <div class="scenario-grid">
+                        <div class="scenario-card">
+                            <div class="scenario-visual satellite-damage">
+                                <div class="satellite">
+                                    <div class="satellite-body"></div>
+                                    <div class="solar-panel left"></div>
+                                    <div class="solar-panel right"></div>
+                                    <div class="spark spark1"></div>
+                                    <div class="spark spark2"></div>
+                                    <div class="spark spark3"></div>
+                                </div>
+                                <div class="danger-icon">⚠️</div>
+                            </div>
+                            <h4>🛰️ Satellite Failures</h4>
+                            <p>Electronics fried by radiation, communications lost, GPS systems offline. Satellites drift out of orbit due to atmospheric drag.</p>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <div class="scenario-visual power-grid">
+                                <div class="city-skyline">
+                                    <div class="building" style="height: 80px; left: 10%;"></div>
+                                    <div class="building" style="height: 120px; left: 25%;"></div>
+                                    <div class="building" style="height: 100px; left: 40%;"></div>
+                                    <div class="building" style="height: 90px; left: 55%;"></div>
+                                    <div class="building" style="height: 110px; left: 70%;"></div>
+                                    <div class="building" style="height: 95px; left: 85%;"></div>
+                                </div>
+                                <div class="power-surge"></div>
+                                <div class="transformer-explosion"></div>
+                            </div>
+                            <h4>⚡ Power Grid Collapse</h4>
+                            <p>Geomagnetically Induced Currents overload transformers. Cities go dark, critical infrastructure fails, economic losses in trillions.</p>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <div class="scenario-visual aurora-display">
+                                <div class="earth-night">
+                                    <div class="aurora-wave wave1"></div>
+                                    <div class="aurora-wave wave2"></div>
+                                    <div class="aurora-wave wave3"></div>
+                                    <div class="stars"></div>
+                                </div>
+                            </div>
+                            <h4>🌌 Global Aurora Displays</h4>
+                            <p>Charged particles create stunning light shows visible at equatorial latitudes. Beautiful auroras seen from India, Africa, South America.</p>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <div class="scenario-visual aviation-impact">
+                                <div class="airplane">
+                                    <div class="plane-body"></div>
+                                    <div class="plane-wing"></div>
+                                    <div class="radiation-waves"></div>
+                                </div>
+                                <div class="warning-signal"></div>
+                            </div>
+                            <h4>✈️ Aviation Disruptions</h4>
+                            <p>Radio blackouts force flight diversions. Polar routes become hazardous due to radiation exposure. Crew and passengers at risk.</p>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <div class="scenario-visual communication-loss">
+                                <div class="signal-tower">
+                                    <div class="tower-base"></div>
+                                    <div class="tower-top"></div>
+                                    <div class="signal-wave dead"></div>
+                                </div>
+                                <div class="no-signal">📵</div>
+                            </div>
+                            <h4>📡 Communication Breakdown</h4>
+                            <p>HF radio communications fail. Emergency services lose connectivity. Internet backbone disrupted. Global coordination paralyzed.</p>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <div class="scenario-visual space-station">
+                                <div class="iss">
+                                    <div class="iss-module"></div>
+                                    <div class="iss-solar"></div>
+                                    <div class="radiation-shield"></div>
+                                </div>
+                                <div class="astronaut-alert">👨‍🚀</div>
+                            </div>
+                            <h4>🚀 Space Station Danger</h4>
+                            <p>Astronauts on ISS seek shelter in protected modules. Radiation exposure risk increases. EVAs cancelled, missions delayed.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h3>⚡ Magnetosphere Compression</h3>
+                            <p>The CME's magnetic field compresses Earth's protective magnetosphere, causing it to 
+                            vibrate and release energy. This creates electric currents in the upper atmosphere.</p>
+                            <div class="impact-badge danger">Immediate Effect</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h3>📡 Communication Disruption</h3>
+                            <p>High-frequency radio signals get absorbed or scattered by ionospheric disturbances. 
+                            GPS accuracy degrades, aviation communications fail, and emergency services lose connectivity.</p>
+                            <div class="impact-badge warning">Within Minutes</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h3>🛰️ Satellite Damage</h3>
+                            <p>Charged particles penetrate satellite electronics, causing malfunctions or permanent damage. 
+                            Satellites experience increased drag from atmospheric expansion and may lose altitude.</p>
+                            <div class="impact-badge danger">Hours</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h3>⚡ Power Grid Failures</h3>
+                            <p>Geomagnetically Induced Currents (GICs) flow through power lines and transformers. 
+                            These can overheat and destroy critical infrastructure, causing widespread blackouts.</p>
+                            <div class="impact-badge critical">Peak Impact</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-content">
+                            <h3>🌌 Aurora Display</h3>
+                            <p>Charged particles collide with atmospheric gases, creating beautiful auroras visible at 
+                            lower latitudes than usual. This is the most visible but least harmful effect.</p>
+                            <div class="impact-badge safe">Visible Effect</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="real-world-examples">
+                    <h3 style="color: #ff6b35; margin: 30px 0 20px 0;">📚 Historical CME Events</h3>
+                    
+                    <div class="example-grid">
+                        <div class="example-card">
+                            <div class="example-year">1859</div>
+                            <h4>Carrington Event</h4>
+                            <p>The most powerful geomagnetic storm ever recorded. Telegraph systems worldwide sparked, 
+                            caught fire, and operators received electric shocks. Auroras were visible near the equator.</p>
+                            <div class="severity-bar">
+                                <div class="severity-fill" style="width: 100%; background: #ff0000;"></div>
+                            </div>
+                            <span class="severity-label">Extreme (G5)</span>
+                        </div>
+                        
+                        <div class="example-card">
+                            <div class="example-year">1989</div>
+                            <h4>Quebec Blackout</h4>
+                            <p>A powerful CME caused a 9-hour blackout across Quebec, Canada, affecting 6 million people. 
+                            Transformers were permanently damaged, costing millions in repairs.</p>
+                            <div class="severity-bar">
+                                <div class="severity-fill" style="width: 85%; background: #ff4400;"></div>
+                            </div>
+                            <span class="severity-label">Severe (G4)</span>
+                        </div>
+                        
+                        <div class="example-card">
+                            <div class="example-year">2012</div>
+                            <h4>Near Miss</h4>
+                            <p>A Carrington-class CME passed through Earth's orbit, missing our planet by just 9 days. 
+                            Scientists estimated it would have caused $2 trillion in damage if it had hit Earth.</p>
+                            <div class="severity-bar">
+                                <div class="severity-fill" style="width: 95%; background: #ff2200;"></div>
+                            </div>
+                            <span class="severity-label">Potential Catastrophe</span>
+                        </div>
+                        
+                        <div class="example-card">
+                            <div class="example-year">2024</div>
+                            <h4>May G5 Storm</h4>
+                            <p>The strongest geomagnetic storm in 20+ years caused widespread aurora displays visible 
+                            across the globe, minor satellite disruptions, and GPS anomalies.</p>
+                            <div class="severity-bar">
+                                <div class="severity-fill" style="width: 80%; background: #ff6600;"></div>
+                            </div>
+                            <span class="severity-label">Strong (G5)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="protection-box">
+                    <h3 style="color: #00ffff; margin-bottom: 15px;">🛡️ Why Early Detection Matters</h3>
+                    <p style="line-height: 1.6; color: #ddd;">
+                        With Aditya-L1 stationed at L1 point, we get <strong style="color: #00ffff;">15-60 minutes advance warning</strong> 
+                        before a CME impacts Earth. This critical time allows:
+                    </p>
+                    <ul style="margin-top: 15px; color: #ddd; line-height: 1.8;">
+                        <li>🛰️ Satellites to enter safe mode and shut down vulnerable systems</li>
+                        <li>⚡ Power companies to disconnect transformers and stabilize grids</li>
+                        <li>✈️ Airlines to reroute polar flights and switch to alternative communication</li>
+                        <li>🚀 Astronauts on ISS to seek shelter in protected areas</li>
+                        <li>🏥 Hospitals and critical infrastructure to activate backup systems</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #00ffff; font-weight: bold;">
+                        This is why projects like mine — using AI to detect CMEs from SWIS data — are crucial for protecting our modern world.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="viz-card">
+            <h2 class="card-title">📈 Detection Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value">1.5M km</div>
+                    <div class="stat-label">Distance from Earth</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Continuous Monitoring</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">3M km/h</div>
+                    <div class="stat-label">CME Speed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="ionSpeed">582</div>
+                    <div class="stat-label">Ion Speed (km/s)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="density">8.4</div>
+                    <div class="stat-label">Particle Density (n/cm³)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="temp">1.2M</div>
+                    <div class="stat-label">Temperature (K)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/main.js"></script>
+</body>
+</html>
