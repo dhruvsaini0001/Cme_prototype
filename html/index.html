@@ -7,9 +7,71 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+    <!-- Alert Panel for CME Detection -->
+    <div class="alert-panel" id="alertPanel">
+        <div class="alert-text">⚠️ CME ALERT! ⚠️</div>
+        <div class="alert-details">Coronal Mass Ejection Detected!</div>
+        <div class="alert-details">ETA to Earth: <span id="etaTime">15 min</span></div>
+    </div>
+
     <div class="container">
         <h1>🌞 Coronal Mass Ejection Detection System</h1>
         <p class="subtitle">Powered by Aditya-L1 SWIS Payload & AI Analysis</p>
+        
+        <!-- Live Telemetry Data -->
+        <div class="info-panel">
+            <h2 style="color: #ff6b35; margin-bottom: 20px;">📊 SWIS Payload - Live Telemetry</h2>
+            <div class="info-grid">
+                <div class="info-box" id="speedBox">
+                    <div class="info-value" id="speed">450</div>
+                    <div class="info-label">Solar Wind (km/s)</div>
+                </div>
+                <div class="info-box" id="densityBox">
+                    <div class="info-value" id="density">6.2</div>
+                    <div class="info-label">Density (n/cm³)</div>
+                </div>
+                <div class="info-box" id="tempBox">
+                    <div class="info-value" id="temp">1.1M</div>
+                    <div class="info-label">Temperature (K)</div>
+                </div>
+                <div class="info-box" id="statusBox">
+                    <div class="info-value" id="status">Normal</div>
+                    <div class="info-label">System Status</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Real-Time 3D Space Visualization -->
+        <div class="viz-card">
+            <h2 class="card-title">🌌 Real-Time Space Visualization</h2>
+            <div class="canvas-container">
+                <canvas id="spaceCanvas"></canvas>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #ffa500; box-shadow: 0 0 15px #ffa500;"></div>
+                    <span>Sun (Corona)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #00ffff; box-shadow: 0 0 10px #00ffff;"></div>
+                    <span>Aditya-L1 (L1 Point)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #4da6ff;"></div>
+                    <span>Earth</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #ff6b35; box-shadow: 0 0 10px #ff6b35;"></div>
+                    <span>CME Plasma Stream</span>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="triggerCME()">🌊 Launch CME Event</button>
+                <button class="control-btn" onclick="resetView()">🔄 Reset System</button>
+            </div>
+        </div>
         
         <div class="viz-grid">
             <div class="viz-card">
@@ -442,11 +504,11 @@
                     <div class="stat-label">Ion Speed (km/s)</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value" id="density">8.4</div>
+                    <div class="stat-value" id="densityOld">8.4</div>
                     <div class="stat-label">Particle Density (n/cm³)</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value" id="temp">1.2M</div>
+                    <div class="stat-value" id="tempOld">1.2M</div>
                     <div class="stat-label">Temperature (K)</div>
                 </div>
             </div>
